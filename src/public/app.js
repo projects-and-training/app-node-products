@@ -55,7 +55,7 @@ $(function(){
               name: name
             },
             success: function(response){
-             console.log(response);
+             $('#getProducts').click();
             }
         });
     });

@@ -29,13 +29,21 @@ app.post('/products', (req, res) =>{
     const { name } = req.body;
     products.push({
         id: products.length + 1,
-        name
+        name: name
     });
     res.json('satisfactoriamente creado');
 });
 
 app.put('/products/:id', (req, res) =>{
-    console.log(req.params, req.body);
+    const {id} = req.params;
+    const {name} = req.body;
+
+    products.forEach((product, i) =>{
+        if(product.id == id){
+            product.name = name;
+        }
+    });
+
     res.json('recibido');
 });
 
