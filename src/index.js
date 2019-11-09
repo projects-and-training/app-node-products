@@ -34,8 +34,14 @@ app.post('/products', (req, res) =>{
     res.json('satisfactoriamente creado');
 });
 
-app.put('/products/:id', (req, res) =>{
-    console.log(req.params, req.body);
+app.put('/products', (req, res) =>{
+    console.log(req.body);
+    let id = req.body.id
+    products.map((product, i) => {
+        if(product.id == id){
+            products[i].name = req.body.name
+        }
+    })    
     res.json('recibido');
 });
 
