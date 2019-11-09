@@ -34,17 +34,23 @@ app.post('/products', (req, res) =>{
     res.json('satisfactoriamente creado');
 });
 
-app.put('/products/:id', (req, res) =>{
-    const {id} = req.params;
-    const {name} = req.body;
-
-    products.forEach((product, i) =>{
+app.put('/products', (req, res) =>{
+    console.log(req.body);
+    let id = req.body.id;
+    products.map((product, i) => {
         if(product.id == id){
-            product.name = name;
+            products[i].name = req.body.name
         }
-    });
-
+    });    
     res.json('recibido');
+});
+
+app.delete('/products', (req,res) =>{
+    const {id} = req.body;
+    
+    products = products.filter(product => product.id !== id);
+    
+    res.json('Delete complete');
 });
 
 app.use(express.static(path.join(__dirname,'public')));
