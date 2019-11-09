@@ -60,4 +60,24 @@ $(function(){
             }
         });
     });
+
+    $('table').on('click', '.delete-button', function(){
+        if(confirm('¿Está seguro de eliminar el producto?')){
+          let row = $(this).closest('tr');
+          let id = parseInt(row[0].dataset.id);
+          let name = row.find('.name').val();
+
+          $.ajax({
+             url: "/products",
+              method: 'DELETE',
+              data:{
+                id: id
+              },
+              success: function(response){
+                $(`tr[data-id=${id}]`).remove()
+                console.log(response);
+              }
+          });
+        }
+    });
 });
