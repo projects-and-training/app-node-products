@@ -50,7 +50,7 @@ app.delete('/products', (req,res) =>{
     
     products = products.filter(product => product.id !== id);
     
-    res.json('Delete complete');
+    res.json('eliminacion completa');
 });
 
 app.use(express.static(path.join(__dirname,'public')));
