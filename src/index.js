@@ -4,7 +4,7 @@ const path = require('path');
 
 const app = express();
 
-const products = [
+let products = [
     {
         id: 1,
         name: 'laptop'
