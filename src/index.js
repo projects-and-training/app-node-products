@@ -29,25 +29,29 @@ app.post('/products', (req, res) =>{
     const { name } = req.body;
     products.push({
         id: products.length + 1,
-        name
+        name: name
     });
     res.json('satisfactoriamente creado');
 });
 
 app.put('/products', (req, res) =>{
     console.log(req.body);
-    let id = req.body.id
+    let id = req.body.id;
     products.map((product, i) => {
         if(product.id == id){
             products[i].name = req.body.name
         }
-    })    
+    });    
     res.json('recibido');
 });
 
-app.delete('/products', (req, res) => {
-    res.json('deleted')
-})
+app.delete('/products', (req,res) =>{
+    const {id} = req.body;
+    
+    products = products.filter(product => product.id !== id);
+    
+    res.json('eliminacion exitosa');
+});
 
 app.use(express.static(path.join(__dirname,'public')));
 

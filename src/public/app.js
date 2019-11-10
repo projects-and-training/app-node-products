@@ -8,15 +8,15 @@ $(function(){
             tbody.html('');
                products.forEach(product =>{
                   tbody.append(`
-                        <tr data-id=${product.id}>
+                        <tr>
                             <td class="id">
                                 ${product.id}
                             </td>
                             <td class="id">
-                                <input type="text" class="name" value="${product.name}" />
+                                <input type="text" class="name" value="${product.name}"/>
                             </td>
                             <td class="id">
-                                <button class="update-button">Update</button>
+                                <button class="update-button">Uptdate</button>
                                 <button class="delete-button">Delete</button>
                             </td>
                         </tr>
@@ -45,18 +45,17 @@ $(function(){
 
     $('table').on('click', '.update-button', function(){
         let row = $(this).closest('tr');
-        let id = parseInt(row[0].dataset.id);
+        let id = row.find('.id').text();
         let name = row.find('.name').val();
 
         $.ajax({
-           url: "/products",
+           url: "/products/" + id,
             method: 'PUT',
             data:{
-              id: id,
               name: name
             },
             success: function(response){
-             console.log(response);
+             $('#getProducts').click();
             }
         });
     });
