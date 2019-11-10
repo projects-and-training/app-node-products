@@ -45,6 +45,10 @@ app.put('/products', (req, res) =>{
     res.json('recibido');
 });
 
+app.delete('/products', (req, res) => {
+    res.json('deleted')
+})
+
 app.use(express.static(path.join(__dirname,'public')));
 
 app.listen(app.get('port'), () =>{
