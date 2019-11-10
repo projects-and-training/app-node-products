@@ -48,7 +48,15 @@ app.put('/products', (req, res) =>{
 app.delete('/products', (req,res) =>{
     const {id} = req.body;
     
-    products = products.filter(product => product.id !== id);
+    products = products.filter(product => {
+        return product.id !== parseInt(id)
+    });
+
+    products.map((product, i) => {
+        products[i].id = i+1
+    }); 
+
+    console.log(products)
     
     res.json('eliminacion exitosa');
 });

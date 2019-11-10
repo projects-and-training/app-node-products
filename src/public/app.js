@@ -56,7 +56,8 @@ $(function(){
               name: name
             },
             success: function(response){
-             console.log(response);
+              console.log(response);
+              $('#getProducts').click();
             }
         });
     });
@@ -75,6 +76,7 @@ $(function(){
               },
               success: function(response){
                 $(`tr[data-id=${id}]`).remove()
+                $('#getProducts').click();
                 console.log(response);
               }
           });
